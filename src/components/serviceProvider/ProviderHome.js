@@ -4,10 +4,11 @@ import Dashboard from "./Dashboard";
 import Dashboard2 from "./Dashboard2";
 import Profile from "./Profile";
 import Orders from "./Orders";
+import Bookings from "./Bookings";
 import { Link, useNavigate } from "react-router-dom";
 
 function ProviderHome() {
-  const [selectedOption, setSelectedOption] = useState("profile");
+  const [selectedOption, setSelectedOption] = useState("todaysOrders");
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
@@ -50,7 +51,7 @@ function ProviderHome() {
         <div style={{ marginLeft: 240, padding: 20 }}>
           {selectedOption === "profile" && <Profile />}
           {selectedOption === "dashboard" && <Dashboard2 />}
-          {selectedOption === "todaysOrders" && <Orders />}
+          {selectedOption === "todaysOrders" && <Bookings />}
         </div>
       </div>
     </Box>
