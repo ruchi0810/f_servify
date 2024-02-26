@@ -16,6 +16,7 @@ import Dashboard2 from "./components/serviceProvider/Dashboard2";
 import Orders from "./components/serviceProvider/Orders";
 import Edit from "./components/serviceProvider/Edit";
 import UserBooking from "./components/user/userBooking";
+import UserBookingStatus from "./components/user/userBookingStatus";
 import FirebaseImageUpload from "./components/FirebaseImgUpload/FirebaseImageUpload";
 
 function App() {
@@ -37,6 +38,10 @@ function App() {
           <Route path="/providerhome/edit/:id" element={<Edit />} />
           <Route path="/firebaseimg" element={<FirebaseImageUpload />} />
           <Route path="/userbooking" element={<UserBooking />}></Route>
+          <Route
+            path="/userbookingstatus"
+            element={<UserBookingStatus />}
+          ></Route>
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Router>
