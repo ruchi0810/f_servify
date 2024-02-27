@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
-import {
-  Card,
-  CardContent,
-  Typography,
-  Avatar,
-  Container,
-} from "@mui/material";
+import { Card, Typography } from "@mui/material";
 
 const UserBookingStatus = () => {
-  const userId = "65cb48a9222c5e20e0a34fac";
+  const userId = "65cb48c8222c5e20e0a34fae";
   const [bookings, setBookings] = useState([]);
 
   const styles = {
@@ -19,6 +13,9 @@ const UserBookingStatus = () => {
     },
     acceptedBtn: {
       backgroundColor: "green",
+    },
+    cancelBtn: {
+      backgroundColor: "red",
     },
     cardOrders: {
       marginTop: "2rem",
@@ -42,6 +39,28 @@ const UserBookingStatus = () => {
     }
   };
 
+  const cancelBooking = async (bookingId) => {
+    try {
+      // Make the API call to cancel the booking
+      await axios.put(
+        `http://localhost:8000/api/booking/cancelbooking/${bookingId}`
+      );
+
+      // Update the local state to mark the booking as canceled
+      setBookings((prevBookings) =>
+        prevBookings.map((booking) =>
+          booking._id === bookingId
+            ? { ...booking, userstatus: "canceled" }
+            : booking
+        )
+      );
+
+      console.log(`Booking ID ${bookingId} canceled successfully`);
+    } catch (error) {
+      console.error("Error canceling booking:", error);
+    }
+  };
+
   useEffect(() => {
     const fetchUserBookings = async () => {
       try {
@@ -58,12 +77,28 @@ const UserBookingStatus = () => {
             return {
               ...booking,
               serviceProviderDetails,
+              // Add a new property to track cancellation status
+              isCanceled: await checkCancellation(booking._id),
             };
           })
         );
         setBookings(bookingsWithDetails);
       } catch (error) {
         console.error("Error fetching user bookings:", error);
+      }
+    };
+
+    // Function to check cancellation status
+    const checkCancellation = async (bookingId) => {
+      try {
+        const response = await fetch(
+          `http://localhost:8000/api/booking/checkcancellation/${bookingId}`
+        );
+        const data = await response.json();
+        return !data.canceled; // Invert the value because we want isCanceled to be true if canceled is false
+      } catch (error) {
+        console.error("Error checking cancellation status:", error);
+        return false;
       }
     };
 
@@ -99,6 +134,17 @@ const UserBookingStatus = () => {
             <Typography variant="body1" color="text.secondary">
               Booking ID: {booking._id}, User Status: {booking.userstatus}
             </Typography>
+            {booking.userstatus !== "canceled" && booking.isCanceled && (
+              <Button
+                style={styles.cancelBtn}
+                variant="contained"
+                color="secondary"
+                onClick={() => cancelBooking(booking._id)}
+                disabled={booking.providerstatus === "cancel booking"} // Disable button if providerstatus is "cancel booking"
+              >
+                Cancel
+              </Button>
+            )}
           </Card>
         ))}
       </ul>
