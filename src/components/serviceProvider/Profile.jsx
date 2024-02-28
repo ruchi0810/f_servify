@@ -16,27 +16,6 @@ import sp2 from "../../graphics/sp2.png";
 const Profile = () => {
   const [serviceProviderDetails, setServiceProviderDetails] = useState(null);
 
-  //localhost:8000/api/service-providers/getServiceProviderDetailsByEmail
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       // Replace the URL with your actual backend API endpoint
-  //       const response = await axios.get(
-  //         "http://localhost:8000/api/service-providers/getonesp/mohan@gmail.com"
-  //       );
-
-  //       // Set the fetched data to the state
-  //       setServiceProviderDetails(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   };
-
-  //   // Call the fetchData function when the component mounts
-  //   fetchData();
-  // }, []); // Empty dependency array ensures it runs once on mount
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -44,7 +23,7 @@ const Profile = () => {
         const response = await axios.post(
           "http://localhost:8000/api/service-providers/getServiceProviderDetailsByEmail",
           {
-            spemail: "chiku@gmail.com", // Pass the email in the request body
+            email: "jaydeep@gmail.com", // Pass the email in the request body
           }
         );
 
@@ -123,38 +102,38 @@ const Profile = () => {
             <Card style={styles.card}>
               <CardContent>
                 <Avatar style={styles.avatar}>
-                  {serviceProviderDetails.spname[0]}
+                  {serviceProviderDetails.fname[0]}
                 </Avatar>
                 <Typography variant="h5" component="div" style={styles.content}>
-                  {serviceProviderDetails.spname}
+                  {serviceProviderDetails.fname}
                 </Typography>
                 <Typography
                   variant="body2"
                   color="text.secondary"
                   style={styles.content}
                 >
-                  {serviceProviderDetails.spmobile}
+                  {serviceProviderDetails.mobile}
                 </Typography>
                 <Typography
                   variant="body2"
                   color="text.secondary"
                   style={styles.content}
                 >
-                  {serviceProviderDetails.spemail}
+                  {serviceProviderDetails.email}
                 </Typography>
                 <Typography
                   variant="body2"
                   color="text.secondary"
                   style={styles.content}
                 >
-                  {serviceProviderDetails.spcity}
+                  {serviceProviderDetails.city}
                 </Typography>
                 <Typography
                   variant="body2"
                   color="text.secondary"
                   style={styles.content}
                 >
-                  {serviceProviderDetails.spaddress}
+                  {serviceProviderDetails.location}
                 </Typography>
                 <Link to={`edit/${serviceProviderDetails._id}`}>
                   <Button

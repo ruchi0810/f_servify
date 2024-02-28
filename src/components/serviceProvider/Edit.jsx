@@ -1,123 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import { Link, useNavigate, useParams } from "react-router-dom";
-// import axios from "axios";
-// import toast from "react-hot-toast";
-
-// const Edit = () => {
-//   const styles = {};
-//   const providers = {
-//     spname: "",
-//     spmobile: "",
-//     spaddress: "",
-//     spcity: "",
-//     spemail: "",
-//   };
-//   const { id } = useParams();
-//   const navigate = useNavigate();
-//   const [provider, setProvider] = useState(providers);
-//   const inputChangeHandler = (e) => {
-//     const { name, value } = e.target;
-//     setProvider({ ...provider, [name]: value });
-//     console.log(provider);
-//   };
-//   useEffect(() => {
-//     axios
-//       .get(`http://localhost:8000/api/service-providers/getone/${id}`)
-//       .then((response) => {
-//         setProvider(response.data);
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//       });
-//   }, [id]);
-
-//   const submitForm = async (e) => {
-//     e.preventDefault();
-//     await axios
-//       .put(`http://localhost:8000/api/service-providers/update/${id}`, provider)
-//       .then((response) => {
-//         toast.success(response.data.msg, { position: "top-right" });
-//         navigate("/");
-//       })
-//       .catch((error) => console.log(error));
-//   };
-//   return (
-//     <div className="addUser" style={styles.adduser}>
-//       <Link to={"/providerhome"}>Back</Link>
-//       <h3>Update user</h3>
-//       <form className="addUserForm" onSubmit={submitForm}>
-//         <div className="inputGroup">
-//           <label htmlFor="name">name</label>
-//           <input
-//             type="text"
-//             // by default value lakhaine  aavi jaay edit ma
-//             value={provider.spname}
-//             onChange={inputChangeHandler}
-//             id="name"
-//             name="spname"
-//             autoComplete="off"
-//             placeholder="First name"
-//           />
-//         </div>
-//         <div className="inputGroup">
-//           <label htmlFor="mobile">Mobile no</label>
-//           <input
-//             type="text"
-//             value={provider.spmobile}
-//             onChange={inputChangeHandler}
-//             id="mobile"
-//             name="spmobile"
-//             autoComplete="off"
-//             placeholder="mobile no"
-//           />
-//         </div>
-//         <div className="inputGroup">
-//           <label htmlFor="address">Address</label>
-//           <input
-//             type="text"
-//             value={provider.spaddress}
-//             onChange={inputChangeHandler}
-//             id="address"
-//             name="spaddress"
-//             autoComplete="off"
-//             placeholder="address"
-//           />
-//         </div>
-//         <div className="inputGroup">
-//           <label htmlFor="city">City</label>
-//           <input
-//             type="text"
-//             value={provider.spcity}
-//             onChange={inputChangeHandler}
-//             id="city"
-//             name="spcity"
-//             autoComplete="off"
-//             placeholder="city"
-//           />
-//         </div>
-//         <div className="inputGroup">
-//           <label htmlFor="email">Email</label>
-//           <input
-//             type="email"
-//             value={provider.spemail}
-//             onChange={inputChangeHandler}
-//             id="email"
-//             name="spemail"
-//             autoComplete="off"
-//             placeholder="Email"
-//           />
-//         </div>
-
-//         <div className="inputGroup">
-//           <button type="submit">UPDATE USER</button>
-//         </div>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Edit;
-
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
@@ -234,16 +114,16 @@ const Edit = () => {
         <h3 style={{ textAlign: "center" }}>Update user</h3>
         <form onSubmit={submitForm} style={styles.addUserForm}>
           <div style={styles.label_field}>
-            <label htmlFor="name" style={styles.labels}>
+            <label htmlFor="fname" style={styles.labels}>
               name
             </label>
             <input
               style={styles.fileds}
               type="text"
-              value={provider.spname}
+              value={provider.fname}
               onChange={inputChangeHandler}
               id="name"
-              name="spname"
+              name="fname"
               autoComplete="off"
               placeholder="First name"
             />
@@ -255,25 +135,25 @@ const Edit = () => {
             <input
               style={styles.fileds}
               type="text"
-              value={provider.spmobile}
+              value={provider.mobile}
               onChange={inputChangeHandler}
               id="mobile"
-              name="spmobile"
+              name="mobile"
               autoComplete="off"
               placeholder="mobile no"
             />
           </div>
           <div style={styles.label_field}>
-            <label htmlFor="address" style={styles.labels}>
+            <label htmlFor="location" style={styles.labels}>
               Address
             </label>
             <input
               style={styles.fileds}
               type="text"
-              value={provider.spaddress}
+              value={provider.location}
               onChange={inputChangeHandler}
               id="address"
-              name="spaddress"
+              name="location"
               autoComplete="off"
               placeholder="address"
             />
@@ -285,10 +165,10 @@ const Edit = () => {
             <input
               style={styles.fileds}
               type="text"
-              value={provider.spcity}
+              value={provider.city}
               onChange={inputChangeHandler}
               id="city"
-              name="spcity"
+              name="city"
               autoComplete="off"
               placeholder="city"
             />
@@ -300,7 +180,7 @@ const Edit = () => {
             <input
               style={styles.fileds}
               type="email"
-              value={provider.spemail}
+              value={provider.email}
               onChange={inputChangeHandler}
               id="email"
               name="spemail"
