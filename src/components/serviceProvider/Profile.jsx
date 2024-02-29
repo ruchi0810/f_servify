@@ -287,7 +287,7 @@ const Profile = () => {
                   variant="contained"
                   color="primary"
                 >
-                  Read more...
+                  View All...
                 </Button>
               </Link>
             </Card>

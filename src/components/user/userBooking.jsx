@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
+import carpenter from "../../graphics/carpenter.jpeg";
+import { IoLocationSharp } from "react-icons/io5";
+import { FaPhoneAlt } from "react-icons/fa";
+import { IoMailOpen } from "react-icons/io5";
+
 import {
   Card,
   CardContent,
@@ -97,9 +102,74 @@ const UserBooking = () => {
             style={styles.cardOrders}
             key={provider._id}
           >
-            <Typography variant="body1" color="text.secondary">
-              {`ID: ${provider._id}`}
-            </Typography>
+            <div style={{ display: "flex" }}>
+              <div
+                className="avtarcontainer"
+                style={{
+                  backgroundColor: "#c3e5f7",
+                  paddingTop: "2rem",
+                  paddingLeft: "2rem",
+                  paddingRight: "2rem",
+                  paddingBottom: "1rem",
+
+                  borderRadius: "20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Avatar
+                  sx={{ width: 90, height: 90, marginBottom: "1rem" }}
+                  src={carpenter}
+                />
+                <Button
+                  style={{
+                    backgroundColor: "#002365",
+                    color: "white",
+                    fontSize: "0.8rem",
+                  }}
+                >
+                  view profile
+                </Button>
+              </div>
+              <div style={{ marginLeft: "0.8rem" }}>
+                <Typography
+                  variant="h5"
+                  style={{ fontWeight: "bold", marginLeft: "0.5rem" }}
+                >
+                  {`${provider.fname} ${provider.lname} `}
+                </Typography>
+                <div
+                  className="location"
+                  style={{ display: "flex", alignItems: "center" }}
+                >
+                  <IoLocationSharp />
+
+                  <div
+                    style={{ marginLeft: "0.5rem" }}
+                  >{`  ${provider.location} , ${provider.city} `}</div>
+                </div>
+                <div
+                  className="contact"
+                  style={{ display: "flex", alignItems: "center" }}
+                >
+                  <FaPhoneAlt />
+                  <div
+                    style={{ marginLeft: "0.5rem" }}
+                  >{`  ${provider.mobile} `}</div>
+                </div>
+                <div
+                  className="gmail"
+                  style={{ display: "flex", alignItems: "center" }}
+                >
+                  <IoMailOpen />
+                  <div
+                    style={{ marginLeft: "0.5rem" }}
+                  >{`  ${provider.email} `}</div>
+                </div>
+              </div>
+            </div>
 
             {provider.bookingStatus === "notbooked" && (
               <Button
