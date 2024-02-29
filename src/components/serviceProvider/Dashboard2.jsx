@@ -68,7 +68,7 @@ const Dashboard2 = () => {
                 component="div"
                 style={{ fontWeight: "bold" }}
               >
-                Bookings
+                Completed Bookings
               </Typography>
 
               <Avatar src={orders} />
@@ -97,7 +97,7 @@ const Dashboard2 = () => {
                 component="div"
                 style={{ fontWeight: "bold" }}
               >
-                Complete
+                Cancel bookings
               </Typography>
               <Avatar src={orders} />
             </div>
@@ -125,7 +125,7 @@ const Dashboard2 = () => {
                 component="div"
                 style={{ fontWeight: "bold" }}
               >
-                completed booking
+                upcoming Bookings
               </Typography>
               <Avatar src={orders} />
             </div>
@@ -171,7 +171,9 @@ const Dashboard2 = () => {
       <div style={styles.all_charts}>
         <Card style={styles.card2}>
           <CardContent>
-            <Typography variant="h6">Orders Per Month (Bar Chart)</Typography>
+            <Typography variant="h6" style={{ fontWeight: "bold" }}>
+              Bookings Per Month
+            </Typography>
             <div style={styles.BarChartContainer}>
               <BarChartComponent />
             </div>
@@ -180,8 +182,8 @@ const Dashboard2 = () => {
 
         <Card style={styles.card2}>
           <CardContent>
-            <Typography variant="h6">
-              Orders Distribution (Pie Chart)
+            <Typography variant="h6" style={{ fontWeight: "bold" }}>
+              Monthly Income
             </Typography>
             <div style={styles.pieChartContainer}>
               <PieChartComponent />

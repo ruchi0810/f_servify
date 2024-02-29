@@ -2,15 +2,25 @@ import * as React from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 
 export default function PieChartComponent() {
+  const monthlyIncomeData = [
+    { month: "January", income: 100000 },
+    { month: "February", income: 120000 },
+    { month: "March", income: 160000 },
+    { month: "april", income: 160000 },
+    // Add data for other months
+  ];
+
+  const pieChartData = monthlyIncomeData.map((entry, index) => ({
+    id: index,
+    value: entry.income,
+    label: entry.month,
+  }));
+
   return (
     <PieChart
       series={[
         {
-          data: [
-            { id: 0, value: 10, label: "series A" },
-            { id: 1, value: 15, label: "series B" },
-            { id: 2, value: 20, label: "series C" },
-          ],
+          data: pieChartData,
         },
       ]}
       width={400}

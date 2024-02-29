@@ -33,17 +33,21 @@ const Edit = () => {
       justifyContent: "center",
       alignItems: "center",
       backgroundColor: "#e4f5fc",
-      borderRadius: "20px",
+      borderRadius: "10px",
       border: "none",
       height: "35px",
+      fontSize: "0.9rem",
     },
     label_field: {
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
+      marginBottom: "12px",
     },
     labels: {
-      marginBottom: "5px",
+      marginBottom: "1px",
+      //fontWeight: "bold",
+      fontSize: "0.85rem",
     },
     editbtn: {
       backgroundColor: "#2962ff",
@@ -110,24 +114,42 @@ const Edit = () => {
       }}
     >
       <div style={styles.adduser}>
-        <Link to={"/providerhome"}>Back</Link>
+        <Link to={"/providerhome"}>{"<<"}Back</Link>
         <h3 style={{ textAlign: "center" }}>Update user</h3>
         <form onSubmit={submitForm} style={styles.addUserForm}>
-          <div style={styles.label_field}>
-            <label htmlFor="fname" style={styles.labels}>
-              name
-            </label>
-            <input
-              style={styles.fileds}
-              type="text"
-              value={provider.fname}
-              onChange={inputChangeHandler}
-              id="name"
-              name="fname"
-              autoComplete="off"
-              placeholder="First name"
-            />
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div style={styles.label_field}>
+              <label htmlFor="fname" style={styles.labels}>
+                First name
+              </label>
+              <input
+                style={styles.fileds}
+                type="text"
+                value={provider.fname}
+                onChange={inputChangeHandler}
+                id="name"
+                name="fname"
+                autoComplete="off"
+                placeholder="First name"
+              />
+            </div>
+            <div style={styles.label_field}>
+              <label htmlFor="lname" style={styles.labels}>
+                Last name
+              </label>
+              <input
+                style={styles.fileds}
+                type="text"
+                value={provider.lname}
+                onChange={inputChangeHandler}
+                id="name"
+                name="lname"
+                autoComplete="off"
+                placeholder="Last name"
+              />
+            </div>
           </div>
+
           <div style={styles.label_field}>
             <label htmlFor="mobile" style={styles.labels}>
               Mobile no
@@ -143,6 +165,7 @@ const Edit = () => {
               placeholder="mobile no"
             />
           </div>
+
           <div style={styles.label_field}>
             <label htmlFor="location" style={styles.labels}>
               Address
@@ -158,6 +181,7 @@ const Edit = () => {
               placeholder="address"
             />
           </div>
+
           <div style={styles.label_field}>
             <label htmlFor="city" style={styles.labels}>
               City
@@ -173,6 +197,7 @@ const Edit = () => {
               placeholder="city"
             />
           </div>
+
           <div style={styles.label_field}>
             <label htmlFor="email" style={styles.labels}>
               Email
@@ -183,15 +208,44 @@ const Edit = () => {
               value={provider.email}
               onChange={inputChangeHandler}
               id="email"
-              name="spemail"
+              name="email"
               autoComplete="off"
               placeholder="Email"
             />
           </div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div style={styles.label_field}>
+              <label htmlFor="gender" style={styles.labels}>
+                Gender
+              </label>
+              <input
+                style={styles.fileds}
+                type="text"
+                value={provider.gender}
+                onChange={inputChangeHandler}
+                id="email"
+                name="gender"
+                autoComplete="off"
+                placeholder="gender"
+              />
+            </div>
+            <div style={styles.label_field}>
+              <label htmlFor="age" style={styles.labels}>
+                Age
+              </label>
+              <input
+                style={styles.fileds}
+                type="number"
+                value={provider.age}
+                onChange={inputChangeHandler}
+                id="email"
+                name="age"
+                autoComplete="off"
+                placeholder="age"
+              />
+            </div>
+          </div>
           <div>
-            {/* <button type="submit" style={styles.editbtn}>
-            UPDATE USER
-          </button> */}
             <Button
               type="submit"
               style={styles.editbtn}

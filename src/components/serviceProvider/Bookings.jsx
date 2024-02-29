@@ -21,7 +21,7 @@ const isBookingDeclined = (booking) =>
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
-  const serviceProviderId = "65cf7c41a17678097d7d85ac";
+  const serviceProviderId = "65deb84452aabe28c38143fe";
 
   useEffect(() => {
     // Fetch bookings from your API when the component mounts

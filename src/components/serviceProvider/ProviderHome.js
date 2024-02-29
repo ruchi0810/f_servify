@@ -8,7 +8,7 @@ import Bookings from "./Bookings";
 import { Link, useNavigate } from "react-router-dom";
 
 function ProviderHome() {
-  const [selectedOption, setSelectedOption] = useState("todaysOrders");
+  const [selectedOption, setSelectedOption] = useState("profile");
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
@@ -40,10 +40,10 @@ function ProviderHome() {
             </ListItem>
             <ListItem
               button
-              selected={selectedOption === "todaysOrders"}
-              onClick={() => handleOptionClick("todaysOrders")}
+              selected={selectedOption === "Bookings"}
+              onClick={() => handleOptionClick("Bookings")}
             >
-              <ListItemText primary="Today's Orders" />
+              <ListItemText primary="Bookings" />
             </ListItem>
           </List>
         </Drawer>
@@ -51,7 +51,7 @@ function ProviderHome() {
         <div style={{ marginLeft: 240, padding: 20 }}>
           {selectedOption === "profile" && <Profile />}
           {selectedOption === "dashboard" && <Dashboard2 />}
-          {selectedOption === "todaysOrders" && <Bookings />}
+          {selectedOption === "Bookings" && <Bookings />}
         </div>
       </div>
     </Box>

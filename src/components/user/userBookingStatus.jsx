@@ -118,16 +118,17 @@ const UserBookingStatus = () => {
             {booking.serviceProviderDetails && (
               <div>
                 <Typography variant="body1" color="text.secondary">
-                  ServiceProvider Name: {booking.serviceProviderDetails.spname}
+                  ServiceProvider Name: {booking.serviceProviderDetails.fname}{" "}
+                  {booking.serviceProviderDetails.lname}
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
-                  no: {booking.serviceProviderDetails.spmobile}
+                  no: {booking.serviceProviderDetails.mobile}
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
-                  sericename: {booking.serviceProviderDetails.spservicename}
+                  sericename: {booking.serviceProviderDetails.domain}
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
-                  Email: {booking.serviceProviderDetails.spemail}
+                  Email: {booking.serviceProviderDetails.email}
                 </Typography>
               </div>
             )}
