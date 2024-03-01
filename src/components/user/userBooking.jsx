@@ -5,9 +5,12 @@ import carpenter from "../../graphics/carpenter.jpeg";
 import { IoLocationSharp } from "react-icons/io5";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoMailOpen } from "react-icons/io5";
+import varified from "../../graphics/varified.png";
+import { Link } from "react-router-dom"; 
 
 import {
   Card,
+  Rating,
   CardContent,
   Typography,
   Avatar,
@@ -16,18 +19,34 @@ import {
 
 const styles = {
   acceptBtn: {
-    backgroundColor: "blue",
+    backgroundColor: "#2962ff",
+    float: "Right",
   },
   acceptedBtn: {
     backgroundColor: "green",
+    float: "Right",
   },
   cardOrders: {
     marginTop: "2rem",
-    width: 900,
+    width: 650,
     padding: "2rem",
     alignItems: "center",
     borderRadius: "40px",
     boxShadow: "0 4px 8px rgba(0.1, 0.1, 0.1, 0.1)", // Shadow styling
+  },
+  location: {
+    display: "flex",
+    alignItems: "center",
+  },
+  contact: {
+    marginTop: "0.6rem",
+    display: "flex",
+    alignItems: "center",
+  },
+  gmail: {
+    marginTop: "0.6rem",
+    display: "flex",
+    alignItems: "center",
   },
 };
 
@@ -93,7 +112,7 @@ const UserBooking = () => {
   };
 
   return (
-    <div>
+    <div style={{ backgroundColor: "#edf3f5" }}>
       <h1>Service Providers</h1>
       <ul>
         {serviceProviders.map((provider) => (
@@ -107,11 +126,10 @@ const UserBooking = () => {
                 className="avtarcontainer"
                 style={{
                   backgroundColor: "#c3e5f7",
-                  paddingTop: "2rem",
-                  paddingLeft: "2rem",
-                  paddingRight: "2rem",
+                  paddingTop: "1rem",
+                  paddingLeft: "2.5rem",
+                  paddingRight: "2.5rem",
                   paddingBottom: "1rem",
-
                   borderRadius: "20px",
                   display: "flex",
                   flexDirection: "column",
@@ -120,79 +138,110 @@ const UserBooking = () => {
                 }}
               >
                 <Avatar
-                  sx={{ width: 90, height: 90, marginBottom: "1rem" }}
+                  sx={{ width: 100, height: 100, marginBottom: "1rem" }}
                   src={carpenter}
                 />
-                <Button
+                <Link to={`/userbooking/${provider._id}`}>
+                  <Button
+                    style={{
+                      backgroundColor: "#002365",
+                      color: "white",
+                      fontSize: "0.8rem",
+                      paddingTop: "0.25rem",
+                      paddingBottom: "0.25rem",
+                      paddingRight: "0.8rem",
+                      paddingLeft: "0.8rem",
+                    }}
+                  >
+                    view profile
+                  </Button>
+                </Link>
+              </div>
+              <div style={{ marginLeft: "1.5rem" }}>
+                <p
                   style={{
+                    marginTop: "0.5rem",
                     backgroundColor: "#002365",
+                    borderRadius: "5px",
+                    paddingLeft: "0.5rem",
+                    paddingRight: "0.5rem",
+                    paddingTop: "0.2rem",
+                    paddingBottom: "0.2rem",
+                    textAlign: "center",
                     color: "white",
-                    fontSize: "0.8rem",
                   }}
                 >
-                  view profile
-                </Button>
-              </div>
-              <div style={{ marginLeft: "0.8rem" }}>
-                <Typography
-                  variant="h5"
-                  style={{ fontWeight: "bold", marginLeft: "0.5rem" }}
-                >
-                  {`${provider.fname} ${provider.lname} `}
-                </Typography>
+                  {`${provider.profession}`}
+                </p>
                 <div
-                  className="location"
+                  classname="namevarified"
                   style={{ display: "flex", alignItems: "center" }}
                 >
-                  <IoLocationSharp />
+                  <div
+                    variant="h5"
+                    style={{
+                      fontWeight: "bold",
+                      marginLeft: "0.5rem",
+                      fontSize: "1.2rem",
+                      marginTop: "0.5rem",
+                    }}
+                  >
+                    {`${provider.fname} ${provider.lname} `}
+                  </div>
+                  <Avatar
+                    sx={{ width: 22, height: 22, marginLeft: "0.5rem" }}
+                    src={varified}
+                  />
+                </div>
+                <div>
+                  <Rating value={provider.overallRating} readOnly />
+                </div>
+
+                <div className="location" style={styles.location}>
+                  <IoLocationSharp color="#2962ff" size="1.8rem" />
 
                   <div
                     style={{ marginLeft: "0.5rem" }}
                   >{`  ${provider.location} , ${provider.city} `}</div>
                 </div>
-                <div
-                  className="contact"
-                  style={{ display: "flex", alignItems: "center" }}
-                >
-                  <FaPhoneAlt />
+                <div className="contact" style={styles.contact}>
+                  <FaPhoneAlt color="#2962ff" size="1.5rem" />
                   <div
                     style={{ marginLeft: "0.5rem" }}
                   >{`  ${provider.mobile} `}</div>
                 </div>
-                <div
-                  className="gmail"
-                  style={{ display: "flex", alignItems: "center" }}
-                >
-                  <IoMailOpen />
+                <div className="gmail" style={styles.gmail}>
+                  <IoMailOpen color="#2962ff" size="1.8rem" />
                   <div
                     style={{ marginLeft: "0.5rem" }}
                   >{`  ${provider.email} `}</div>
                 </div>
               </div>
             </div>
-
-            {provider.bookingStatus === "notbooked" && (
-              <Button
-                style={styles.acceptBtn}
-                className="acceptbtn"
-                variant="contained"
-                color="primary"
-                onClick={() => handleBookClick(provider._id)}
-              >
-                Book
-              </Button>
-            )}
-            {provider.bookingStatus === "booked" && (
-              <Button
-                style={styles.acceptedBtn}
-                className="acceptedBtn"
-                variant="contained"
-                color="primary"
-                disabled
-              >
-                Booked
-              </Button>
-            )}
+            <div classname="bookbookedbtn">
+              {provider.bookingStatus === "notbooked" && (
+                <Button
+                  style={styles.acceptBtn}
+                  className="acceptbtn"
+                  variant="contained"
+                  color="primary"
+                  onClick={() => handleBookClick(provider._id)}
+                >
+                  Book
+                </Button>
+              )}
+              {provider.bookingStatus === "booked" && (
+                <Button
+                  style={styles.acceptedBtn}
+                  className="acceptedBtn"
+                  variant="contained"
+                  color="primary"
+                  disabled
+                >
+                  Booked
+                </Button>
+              )}
+            </div>
           </Card>
         ))}
       </ul>

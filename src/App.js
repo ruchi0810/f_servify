@@ -19,6 +19,7 @@ import UserBooking from "./components/user/userBooking";
 import UserBookingStatus from "./components/user/userBookingStatus";
 import FirebaseImageUpload from "./components/FirebaseImgUpload/FirebaseImageUpload";
 import Reviews from "./components/serviceProvider/Reviews";
+import ProviderProfilePage from "./components/user/providerProfilePage";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="/providerhome/Orders" element={<Orders />} />
           <Route path="/providerhome/edit/:id" element={<Edit />} />
           <Route path="/providerhome/reviews/:id" element={<Reviews />} />
+          <Route path="/userbooking/:id" element={<ProviderProfilePage />} />
           <Route path="/firebaseimg" element={<FirebaseImageUpload />} />
           <Route path="/userbooking" element={<UserBooking />}></Route>
           <Route
